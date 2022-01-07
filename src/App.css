@@ -1,5 +1,14 @@
 .App {
   text-align: center;
+  display: flex;
+  margin: 1rem;
+  padding: 1rem;
+}
+.App-child {
+  text-align: center;
+  display: flex;
+  margin: 1rem;
+  padding: 1rem;
 }
 
 .App-logo {

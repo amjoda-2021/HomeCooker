@@ -1,4 +1,5 @@
+import "../App.css";
 const WelcomePage = () => {
-  return <>Welcome Page !</>;
+  return <div className="App-child">Welcome Page !</div>;
 };
 export default WelcomePage;

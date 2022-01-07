@@ -1,0 +1,45 @@
+.navbar {
+  border: red solid 3px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 1rem;
+  padding: 1rem;
+  margin-bottom: 0;
+  background-color: cadetblue;
+  color: whitesmoke;
+}
+.navbar a {
+  text-decoration: none;
+}
+
+/* visited link */
+.navbar a:visited {
+  color: whitesmoke;
+}
+
+/* mouse over link */
+.navbar a:hover {
+  color: rgb(70, 124, 126);
+}
+
+/* selected link */
+.navbar a:active {
+  color: whitesmoke;
+}
+.message {
+  border: solid 2px red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: space-evenly; */
+  margin: auto;
+  margin-top: 0;
+  position: absolute;
+  width: 50%;
+  left: 25%;
+}
+.message p {
+  /* border: blue solid 3px; */
+  margin: 0;
+}

@@ -1,4 +1,4 @@
-import postInformations from "../../../fetch/Thing/postOneThing";
+import postInformations from "../../../fetch/UserProfile/postOneThing";
 import { useContext } from "react";
 import AuthContext from "../../../store/auth";
 import Config from "../../../store/config";
@@ -15,27 +15,26 @@ const CreateThingForm = () => {
         name="formtest"
         encType="multipart/form-data"
       >
-        Name:
-        <input type="text" name="name" />
+        FirstName:
+        <input type="text" name="firstName" />
         <br />
-        Description:
-        <input type="text" name="description" />
+        LastName:
+        <input type="text" name="lastName" />
         <br />
-        EN STOCK: OUI{" "}
-        <input type="radio" id="true" name="inStock" value={true} />
+        Cook: OUI <input type="radio" id="true" name="isCook" value={true} />
         NON
         <input
           type="radio"
           id="false"
-          name="inStock"
+          name="isCook"
           value={false}
           defaultChecked
         />
         <br />
-        Price:
-        <input type="number" name="price" />
+        City:
+        <input type="text" name="city" />
         <br />
-        ImageURL :
+        Avatar :
         <input type="file" name="imageUrl" accept="image/*" />
       </form>
       <button onClick={(event) => postInformations(event, authContext, url)}>

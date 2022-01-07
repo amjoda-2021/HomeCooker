@@ -2,6 +2,8 @@ import signup from "../../fetch/User/signup";
 import React, { useContext, useState } from "react";
 import AuthContext from "../../store/auth";
 import Config from "../../store/config";
+import "../../App.css";
+import classes from "./Auth.module.css";
 const SignUp = () => {
   const authContext = useContext(AuthContext);
   const url = useContext(Config).urlAPI;
@@ -10,9 +12,9 @@ const SignUp = () => {
     password: null,
   });
   return (
-    <>
-    <form>
-      SIGNUP FORM Email:
+    <div className={`App-child ${classes.form}`}>
+      <h3>Inscription</h3>
+      <label for="email">Email:</label>
       <input
         type="email"
         name="email"
@@ -23,7 +25,7 @@ const SignUp = () => {
           })
         }
       />
-      Password:
+      <label for="password">Password:</label>
       <input
         type="password"
         name="password"
@@ -42,8 +44,7 @@ const SignUp = () => {
       >
         S'inscrire
       </button>
-      </form>
-    </>
+    </div>
   );
 };
 export default SignUp;

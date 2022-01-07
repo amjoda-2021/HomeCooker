@@ -1,0 +1,14 @@
+.form {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.form button {
+  width: 8rem;
+  border: rgb(70, 124, 126) solid 1px;
+  border-radius: 0.3rem;
+  padding: 0.4rem;
+  margin: 0.3rem;
+  background-color: transparent;
+  cursor: pointer;
+}

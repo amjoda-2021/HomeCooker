@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Config from "../../store/config";
 import AuthContext from "../../store/auth";
-import getAllThings from "../../fetch/Thing/getAllThings";
+import getAllThings from "../../fetch/UserProfile/getAllThings";
 const Things = () => {
   const authContext = useContext(AuthContext);
   const url = useContext(Config).urlAPI;

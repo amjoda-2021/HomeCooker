@@ -1,4 +1,4 @@
-import updateOneThing from "../../../fetch/Thing/updateOneThing";
+import updateOneThing from "../../../fetch/UserProfile/updateOneThing";
 import { useContext } from "react";
 import AuthContext from "../../../store/auth";
 import { useState } from "react/cjs/react.development";
@@ -15,50 +15,50 @@ const UpdateThingForm = ({ thingId, thing, setThing, setUpdate }) => {
         name="formtest"
         encType="multipart/form-data"
       >
-        Name:
+        FirstName:
         <input
           type="text"
-          name="name"
+          name="firstName"
           value={thing.name}
-          onChange={(event) => setThing({ ...thing, name: event.target.value })}
+          onChange={(event) => setThing({ ...thing, firstName: event.target.value })}
         />
         <br />
-        Description:
+        LastName:
         <input
           type="text"
-          name="description"
+          name="lastName"
           value={thing.description}
           onChange={(event) =>
-            setThing({ ...thing, description: event.target.value })
+            setThing({ ...thing, lastName: event.target.value })
           }
         />
         <br />
-        EN STOCK: OUI{" "}
+        Cook: OUI{" "}
         <input
           type="radio"
           id="true"
-          name="inStock"
+          name="isCook"
           value={true}
           checked={thing.inStock ? true : false}
-          onChange={() => setThing({ ...thing, inStock: true })}
+          onChange={() => setThing({ ...thing, isCook: true })}
         />
         NON
         <input
           type="radio"
           id="false"
-          name="inStock"
+          name="isCook"
           value={false}
           checked={thing.inStock ? false : true}
-          onChange={() => setThing({ ...thing, inStock: false })}
+          onChange={() => setThing({ ...thing, isCook: false })}
         />
         <br />
-        Price:
+        City:
         <input
-          type="number"
-          name="price"
+          type="text"
+          name="city"
           value={thing.price}
           onChange={(event) =>
-            setThing({ ...thing, price: event.target.value })
+            setThing({ ...thing, city: event.target.value })
           }
         />
         <br />
@@ -70,7 +70,14 @@ const UpdateThingForm = ({ thingId, thing, setThing, setUpdate }) => {
           accept="image/*"
           onChange={
             (event) =>
-              updateOneThing(event, authContext, thingId, thing, setImageUrl, url)
+              updateOneThing(
+                event,
+                authContext,
+                thingId,
+                thing,
+                setImageUrl,
+                url
+              )
             // setThing({ ...thing, imageUrl: event.target.value })
           }
         />

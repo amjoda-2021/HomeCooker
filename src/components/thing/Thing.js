@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import AuthContext from "../../store/auth";
-import getOneThing from "../../fetch/Thing/getOneThing";
-import UpdateThingForm from "./forms/UpdateThingForm";
-import deleteOneThing from "./../../fetch/Thing/deleteOneThing";
+import getOneThing from "../../fetch/UserProfile/getOneThing";
+import UpdateUserProfileForm from "./forms/UpdateUserProfileForm";
+import deleteOneThing from "../../fetch/UserProfile/deleteOneThing";
 import { useNavigate } from "react-router-dom";
 import Config from "../../store/config";
 const Thing = () => {
@@ -13,21 +13,19 @@ const Thing = () => {
   const [thing, setThing] = useState({});
   const { thingId } = useParams();
   const [update, setUpdate] = useState(false);
-  useEffect(
-    () => getOneThing({ authContext, thingId, setThing, url }),
-    [update, authContext, thingId]
-  );
+  const [userProfile, setUserProfile] = useState();
+  useEffect(() => getOneThing({ url, auth: authContext, setUserProfile }), []);
   console.log(thing);
   return (
     <>
       COUCOU
       {!update ? (
         <>
-          {thing.name}
-          {thing.description}
-          {thing.inStock}
-          {thing.price}
-          <img src={thing.imageUrl} alt="" />
+          <>{userProfile.firstName}</>
+          <>{userProfile.lastName}</>
+          {userProfile.isCook ? <>Cook</> : <>Client</>}
+          {userProfile.city}
+          <img src={userProfile.imageUrl} alt="" />
           {authContext.auth.userId === thing.userId ? (
             <button onClick={() => setUpdate(true)}>Modifier</button>
           ) : (
@@ -35,7 +33,7 @@ const Thing = () => {
           )}
         </>
       ) : (
-        <UpdateThingForm
+        <UpdateUserProfileForm
           thingId={thingId}
           thing={thing}
           setThing={setThing}
@@ -55,6 +53,7 @@ const Thing = () => {
       ) : (
         false
       )}
+      
     </>
   );
 };

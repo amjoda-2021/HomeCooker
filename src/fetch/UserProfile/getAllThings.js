@@ -1,6 +1,6 @@
 const getInformations = async (authContext, setThings, url) => {
   console.log(authContext);
-  const response = await fetch(`${url}/api/stuff`, {
+  const response = await fetch(`${url}/api/userProfile`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${authContext.auth.token}`,

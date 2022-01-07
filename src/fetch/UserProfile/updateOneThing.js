@@ -17,7 +17,7 @@ const updateOneThing = async (
     objectTest[`${key}`] = value;
   }
   let object = thing ? { ...thing } : { Thing: objectTest };
-  const response = await fetch(`${url}/api/stuff/${thingId}`, {
+  const response = await fetch(`${url}/api/userProfile/${thingId}`, {
     method: "PUT",
     headers: {
       Authorization: `Bearer ${authContext.auth.token}`,

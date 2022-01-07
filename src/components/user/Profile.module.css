@@ -1,0 +1,6 @@
+.profile {
+  border: red solid 3px;
+  display: flex;
+  padding: 1rem;
+  margin: 1rem;
+}

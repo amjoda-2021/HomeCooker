@@ -14,7 +14,7 @@ const postInformations = async (event, authContext, url) => {
   }
   let object = { objectTest };
   console.log(object);
-  const response = await fetch(`${url}/api/stuff`, {
+  const response = await fetch(`${url}/api/userProfile`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${authContext.auth.token}`,
