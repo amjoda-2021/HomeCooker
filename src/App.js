@@ -27,7 +27,7 @@ function App() {
     setAuth({ userId: null, token: null, email: null });
   };
   return (
-    <Config.Provider value={{ urlAPI: "http://localhost:3000" }}>
+    <Config.Provider value={{ urlAPI: "https://home-cooker-back.herokuapp.com/" }}>
       <AuthContext.Provider value={{ auth: auth, setAuth: setAuth }}>
         <Router>
           <div className="app">
