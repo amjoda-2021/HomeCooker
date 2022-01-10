@@ -1,4 +1,8 @@
-const deleteAccount = async ({ url, auth }) => {
+import {
+  validationMessage,
+  errorMessage,
+} from "../../components/messages/messages";
+const deleteAccount = async ({ url, auth, navigate, signOut }) => {
   const response = await fetch(
     `${url}/api/auth/delete-account/${auth.userId}`,
     {
@@ -9,6 +13,13 @@ const deleteAccount = async ({ url, auth }) => {
     }
   );
   const res = await response.json();
-  console.log(res);
+  if (!res.error) {
+    signOut();
+    navigate("/signin");
+    validationMessage(res.message);
+  }
+  if (res.error) {
+    errorMessage(res.error);
+  }
 };
 export default deleteAccount;

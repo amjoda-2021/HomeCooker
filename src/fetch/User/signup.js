@@ -1,4 +1,8 @@
-const signup = async ({ event, authInformations, url }) => {
+import {
+  validationMessage,
+  errorMessage,
+} from "../../components/messages/messages";
+const signup = async ({ event, authInformations, url, navigate }) => {
   event.preventDefault();
   const response = await fetch(`${url}/api/auth/signup`, {
     method: "POST",
@@ -6,7 +10,12 @@ const signup = async ({ event, authInformations, url }) => {
     headers: { "Content-Type": "application/json" },
   });
   const res = await response.json();
-  console.log(res);
+  if (res.error) {
+    errorMessage(res.error);
+  }
+  if (res.message) {
+    validationMessage(res.message);
+  }
 };
 
 export default signup;

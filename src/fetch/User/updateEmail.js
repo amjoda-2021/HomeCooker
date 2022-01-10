@@ -1,6 +1,9 @@
-const updateEmail = async ({ url, auth, newemail }) => {
+import {
+  validationMessage,
+  errorMessage,
+} from "../../components/messages/messages";
+const updateEmail = async ({ url, auth, newemail, toUpdate, setAuth }) => {
   const { userId, email } = auth;
-  console.log(userId, email, newemail, auth.token);
   const response = await fetch(`${url}/api/auth/changeEmail`, {
     method: "POST",
     body: JSON.stringify({
@@ -14,6 +17,13 @@ const updateEmail = async ({ url, auth, newemail }) => {
     },
   });
   const res = await response.json();
-  console.log(res);
+  if (res.error) {
+    errorMessage(res.error);
+  }
+  if (res.message) {
+    validationMessage(res.message);
+    toUpdate(false);
+    setAuth({ ...auth, email: newemail });
+  }
 };
 export default updateEmail;

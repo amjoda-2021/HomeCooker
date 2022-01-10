@@ -1,9 +1,9 @@
 .navbar {
-  border: red solid 3px;
+  /* border: red solid 3px; */
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin: 1rem;
+  /* margin: 1rem; */
   padding: 1rem;
   margin-bottom: 0;
   background-color: cadetblue;
@@ -11,6 +11,13 @@
 }
 .navbar a {
   text-decoration: none;
+  text-align: right;
+}
+.title {
+  font-size: 18px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: left;
 }
 
 /* visited link */
@@ -28,18 +35,26 @@
   color: whitesmoke;
 }
 .message {
-  border: solid 2px red;
+  /* border: solid 2px red; */
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: space-evenly; */
+  justify-content: center;
   margin: auto;
-  margin-top: 0;
   position: absolute;
-  width: 50%;
-  left: 25%;
+  width: 90%;
+  padding-top: 0rem;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+  padding-bottom: 0.8rem;
+  left: 2%;
+  z-index: 1000;
 }
 .message p {
   /* border: blue solid 3px; */
   margin: 0;
+  font-size: 12px;
+}
+.message .error {
+  border: blue solid 3px;
 }

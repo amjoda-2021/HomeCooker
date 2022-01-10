@@ -1,6 +1,4 @@
-import { useState } from "react";
-
-const postInformations = async (event, authContext, url) => {
+const postInformations = async ({ event, authContext, url, toUpdate }) => {
   event.preventDefault();
   const myForm = document.getElementById("formtest");
   var formData = new FormData(myForm);
@@ -9,11 +7,9 @@ const postInformations = async (event, authContext, url) => {
   // FOR SEEING FORMDATA VALUES
   let objectTest = {};
   for (var [key, value] of formData.entries()) {
-    console.log(key, value);
     objectTest[`${key}`] = value;
   }
   let object = { objectTest };
-  console.log(object);
   const response = await fetch(`${url}/api/userProfile`, {
     method: "POST",
     headers: {
@@ -23,7 +19,7 @@ const postInformations = async (event, authContext, url) => {
     object,
   });
   const res = await response.json();
-  console.log(res);
+  toUpdate(false);
 };
 
 export default postInformations;

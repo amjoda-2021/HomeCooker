@@ -5,15 +5,19 @@ import Config from "../../store/config";
 import updatePassword from "../../fetch/User/updatePassword";
 import "../../App.css";
 import classes from "./Auth.module.css";
-const Login = ({ setAuth }) => {
+import { useNavigate, Navigate } from "react-router-dom";
+const Login = ({ setAuth, updateInfo, auth }) => {
+  const navigate = useNavigate();
   const authContext = useContext(AuthContext);
   const url = useContext(Config).urlAPI;
   const [authInformations, setAuthInformations] = useState({
     email: null,
     password: null,
   });
-  const [update, toUpdate] = useState(false);
-
+  const [update, toUpdate] = useState(updateInfo || false);
+  if (auth.token) {
+    return <Navigate to="/" />;
+  }
   return (
     <div className={`App-child ${classes.form}`}>
       {!update ? (
@@ -30,7 +34,8 @@ const Login = ({ setAuth }) => {
               })
             }
           />
-          <label for="password">Password:</label>
+          <div id="message-email"></div>
+          <label for="password">Mot de passe:</label>
           <input
             type="password"
             name="password"
@@ -41,9 +46,17 @@ const Login = ({ setAuth }) => {
               })
             }
           />
+          <div id="message-password"></div>
           <button
             onClick={(event) =>
-              login({ event, authContext, authInformations, url, setAuth })
+              login({
+                event,
+                authContext,
+                authInformations,
+                url,
+                setAuth,
+                navigate,
+              })
             }
           >
             Se connecter
@@ -53,6 +66,10 @@ const Login = ({ setAuth }) => {
       ) : (
         <>
           <h3>Mot de passe oublié </h3>
+          <small>
+            Nous avons besoin de ton email de connexion pour t'envoyer le lien
+            de réinitialisation
+          </small>
           <label for="email">Email:</label>
           <input
             type="email"
@@ -64,10 +81,11 @@ const Login = ({ setAuth }) => {
               })
             }
           />
+          <div id="message-email"></div>
           <button
-            onClick={(event) =>
-              updatePassword({ event, authInformations, url })
-            }
+            onClick={(event) => {
+              updatePassword({ event, authInformations, url, navigate, toUpdate });
+            }}
           >
             Confirmer
           </button>

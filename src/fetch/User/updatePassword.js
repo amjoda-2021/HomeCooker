@@ -1,4 +1,14 @@
-const updatePassword = async ({ event, authInformations, url }) => {
+import {
+  validationMessage,
+  errorMessage,
+} from "../../components/messages/messages";
+const updatePassword = async ({
+  event,
+  authInformations,
+  url,
+  navigate,
+  toUpdate,
+}) => {
   event.preventDefault();
   const response = await fetch(`${url}/api/auth/changePassword`, {
     method: "POST",
@@ -6,6 +16,14 @@ const updatePassword = async ({ event, authInformations, url }) => {
     headers: { "Content-Type": "application/json" },
   });
   const res = await response.json();
-  console.log(res);
+  if (res.error) {
+    errorMessage(res.error);
+    toUpdate(true);
+  }
+  if (res.message) {
+    validationMessage(res.message);
+    toUpdate(false);
+    navigate("/signin");
+  }
 };
 export default updatePassword;

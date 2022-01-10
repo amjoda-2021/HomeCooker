@@ -1,6 +1,215 @@
 .profile {
-  border: red solid 3px;
+  border: blue solid 3px;
+  flex-direction: column;
   display: flex;
   padding: 1rem;
+  padding-top: 2rem;
   margin: 1rem;
+  width: 50%;
+  margin-left: 25%;
+}
+.email {
+  /* border: red solid 3px; */
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 0;
+  justify-content: flex-start;
+  /* height: 2.8rem; */
+  /* margin-bottom: 2rem; */
+}
+.email p {
+  padding: 0.2rem;
+  /* border: red solid 2px; */
+  height: 1.2rem;
+  display: flex;
+
+  width: 10rem;
+}
+.passwordDisplay {
+  width: 15rem;
+}
+.email button {
+  display: flex;
+  margin: 0.3rem;
+  padding: 0.5rem;
+  /* height: 2rem; */
+  align-items: center;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-content: center;
+  justify-content: center;
+}
+.email div {
+  padding-left: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.email button img {
+  display: flex;
+  margin: 0.3rem;
+  height: 300%;
+  align-items: center;
+  overflow: hidden;
+  /* border: tomato solid 3px; */
+}
+.edit {
+  border: none;
+}
+.email p input {
+  /* border: purple solid 2px; */
+  padding: 0.2rem;
+  border: none;
+  font-size: inherit;
+  background-color: rgba(70, 124, 126, 0.171);
+  border-radius: 10px;
+  width: 10rem;
+}
+.email p input:focus {
+  border: none;
+  outline: none;
+  /* color:ivory */
+}
+.email p input:visited {
+  border: transparent;
+  color: ivory;
+}
+.verifyEmail {
+  /* border: red solid 2px; */
+  /* position: absolute; */
+  font-size: 10px;
+  font-weight: inherit;
+
+  /* position: relative; */
+}
+.emailForm {
+  /* border: red solid 3px; */
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.verifyPasswordChild {
+  /* position: absolute; */
+  top: 10rem;
+  left: 15rem;
+  margin: 0;
+  padding: 0;
+  font-size: 10px;
+}
+
+.verifyEmailChild {
+  /* border: solid 2px red; */
+  /* position: absolute; */
+  /* top: 10rem; */
+  /* left: 15rem; */
+  font-size: 10px;
+}
+.verifyEmailChild p {
+  border: blue 2px solid;
+  margin: 0;
+  padding: 0;
+}
+.emailMessage {
+  /* border: solid red 2px; */
+  /* position: absolute; */
+  /* top: 22%;
+  margin: 0;
+  margin-left: 4rem;
+  padding: 0; */
+}
+.displayMessages {
+  display: flex;
+  flex-direction: column;
+}
+.emailSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.deleteAccount {
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center; */
+  margin: 0.5rem;
+  margin-left: 4.5rem;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+
+  /* border: red solid 1px;
+  color: red; */
+  /* margin-top: 3rem; */
+}
+.deleteAccount span button {
+  border: rgb(160, 44, 44) solid 1px;
+  color: rgb(177, 36, 36);
+  display: flex;
+  font-size: 12px;
+  font-weight: bold;
+  height: 100%;
+  /* margin-top: 3rem; */
+}
+.deleteAccount button {
+  border: red solid 1px;
+  color: red;
+  background-color: transparent !important;
+  margin: 0.5rem;
+  /* display: flex;
+  font-size: 10px;
+  font-weight: bold;
+  height: 100%; */
+  /* margin-top: 3rem; */
+}
+.deleteAccountTest {
+  display: flex;
+  justify-content: flex-end;
+}
+.noDeleteAccount {
+  border: rgba(70, 124, 126) solid 1px !important;
+  color: rgba(70, 124, 126) !important;
+  /* margin-top: 3rem; */
+}
+.avatar img {
+  border-radius: 50%;
+  border: solid black 3px;
+  width: 4rem;
+  /* position: absolute;
+  left: 3%;
+  top: 25%; */
+}
+.accountInformations {
+  display: flex;
+  flex-direction: column;
+  width: 23rem;
+  /* border: purple solid 2px; */
+  /* width: 52%; */
+}
+.buttonsdisplay {
+  display: flex;
+  flex-direction: column;
+}
+.accountTitle {
+  /* border: blue solid 2px; */
+  border-bottom: solid 3px rgba(70, 124, 126);
+  text-align: center;
+  padding: 0.5rem;
+  margin: 0;
+  /* width: 420px; */
+}
+.email label {
+  /* border: red solid 2px; */
+  width: 6rem;
+  text-align: center;
+  padding-right: 1rem;
+}
+.backButton {
+  border: none;
+  font-size: 16px;
 }

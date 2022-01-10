@@ -1,89 +1,84 @@
 import { useState, useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import deleteAccount from "../../fetch/User/deleteAccount";
-import updateEmail from "../../fetch/User/updateEmail";
+import { useNavigate, Navigate } from "react-router-dom";
 import Config from "../../store/config";
 import getOneThing from "../../fetch/UserProfile/getOneThing";
-import changePassword from "../../fetch/User/changePassword";
 import classes from "./Profile.module.css";
-const Profile = ({ auth }) => {
-  console.log(auth.email);
+import getUser from "../../fetch/User/getUser";
+import UserEmail from "./components/UserEmail";
+import UserPassword from "./components/UserPassword";
+import DeleteAccount from "./components/DeleteAccount";
+import UserProfile from "./components/UserProfile";
+import defaultAvatar from "../../assets/images/user.png";
+const Profile = ({ auth, setAuth, signOut }) => {
   const navigate = useNavigate();
   const url = useContext(Config).urlAPI;
+  const [displayAlert, setDisplayAlert] = useState(false);
   const [update, toUpdate] = useState(false);
   const [updatePassword, toUpdatePassword] = useState(false);
   const [email, setEmail] = useState(auth.email);
   const [password, setPassword] = useState();
+  const [user, setUser] = useState({});
   const [userProfile, setUserProfile] = useState();
-  useEffect(() => getOneThing({ url, auth, setUserProfile }), []);
+  useEffect(
+    () => getOneThing({ url, auth, setUserProfile }),
+    [url, auth, update]
+  );
+  useEffect(
+    () => getUser({ url, auth, setUser, toUpdate }),
+    [auth.email, auth, url]
+  );
 
+  if (!auth.token) return <Navigate to="/signin" />;
   return (
-    <div className={classes.profile}>
-      Profile:
-      {update ? (
-        <div>
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
+    <div className={`App-child`}>
+      <div className={classes.accountInformations}>
+        <div className={classes.avatar}>
+          <img
+            src={
+              userProfile && userProfile.imageUrl
+                ? userProfile.imageUrl
+                : defaultAvatar
+            }
+            alt=""
           />
-          <button
-            onClick={() => {
-              updateEmail({ url, auth, newemail: email });
-              toUpdate(false);
-            }}
-          >
-            Valider
-          </button>
         </div>
-      ) : (
-        <div>
-          {auth.email}
-          {console.log(auth)}
-          {auth.isConfirmed ? <>Confirmé !</> : false}
-          <button onClick={() => toUpdate(true)}>Modifier</button>
-          {updatePassword ? (
-            <>
-              <input
-                type="password"
-                name="password"
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
-              />
-              <button
-                onClick={(event) => {
-                  changePassword({ event, auth, url, password });
-                  toUpdate(false);
-                }}
-              >
-                Valider
-              </button>
-            </>
-          ) : (
-            <button onClick={() => toUpdatePassword(true)}>
-              Changer mon mot de passe
-            </button>
-          )}
+        <h3 className={classes.accountTitle}>Tes informations</h3>
+        <UserProfile
+          userProfile={userProfile}
+          navigate={navigate}
+          setUserProfile={setUserProfile}
+        />
+      </div>
+      <div className={classes.accountInformations}>
+        <h3 className={classes.accountTitle}>Paramètres du compte</h3>
 
-          <button onClick={() => deleteAccount({ url, auth })}>
-            Supprimer mon compte
-          </button>
-        </div>
-      )}
-      {userProfile ? (
-        <div>
-          <>{userProfile.firstName}</>
-          <>{userProfile.lastName}</>
-          {userProfile.isCook ? <>Cook</> : <>Client</>}
-          {userProfile.city}
-          <img src={userProfile.imageUrl} alt="" />
-        </div>
-      ) : (
-        <button onClick={() => navigate(`/things/creatething`)}>
-          Renseigner mon profil
-        </button>
-      )}
+        <UserEmail
+          toUpdate={toUpdate}
+          update={update}
+          user={user}
+          auth={auth}
+          setAuth={setAuth}
+          email={email}
+          setEmail={setEmail}
+          url={url}
+        />
+        <UserPassword
+          updatePassword={updatePassword}
+          setPassword={setPassword}
+          password={password}
+          toUpdatePassword={toUpdatePassword}
+          auth={auth}
+          url={url}
+        />
+        <DeleteAccount
+          setDisplayAlert={setDisplayAlert}
+          displayAlert={displayAlert}
+          url={url}
+          auth={auth}
+          navigate={navigate}
+          signOut={signOut}
+        />
+      </div>
     </div>
   );
 };

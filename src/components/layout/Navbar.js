@@ -1,14 +1,13 @@
 import { Link } from "react-router-dom";
-import isLogin from "../utils/isLogin";
+
 import classes from "./Navbar.module.css";
 const Navbar = ({ signOut, auth }) => {
-  console.log(auth);
   return (
     <>
       <div className={classes.navbar}>
-        Navbar
-        <Link to="/">Home</Link>
-        <Link to="/things">Things</Link>
+        <Link to="/" className={classes.title}>
+          HomeCooker
+        </Link>
         {auth.token ? (
           <>
             <Link to="/profile">Profile</Link>

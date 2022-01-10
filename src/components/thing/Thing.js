@@ -15,7 +15,7 @@ const Thing = () => {
   const [update, setUpdate] = useState(false);
   const [userProfile, setUserProfile] = useState();
   useEffect(() => getOneThing({ url, auth: authContext, setUserProfile }), []);
-  console.log(thing);
+
   return (
     <>
       COUCOU
@@ -53,7 +53,6 @@ const Thing = () => {
       ) : (
         false
       )}
-      
     </>
   );
 };

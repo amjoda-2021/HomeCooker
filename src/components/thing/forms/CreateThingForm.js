@@ -4,9 +4,7 @@ import AuthContext from "../../../store/auth";
 import Config from "../../../store/config";
 const CreateThingForm = () => {
   const authContext = useContext(AuthContext);
-  console.log(authContext);
   const url = useContext(Config).urlAPI;
-  console.log(url);
   return (
     <>
       <form

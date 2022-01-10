@@ -13,6 +13,7 @@ import WelcomePage from "./components/WelcomePage";
 import CreateThingForm from "./components/thing/forms/CreateThingForm";
 import PasswordResetForm from "./components/user/PasswordResetForm";
 import ConfirmEmail from "./components/user/ConfirmEmail";
+import WorkInProgress from "./components/WorkInProgress";
 function App() {
   const [auth, setAuth] = useState(
     JSON.parse(localStorage.getItem("auth")) || {
@@ -35,19 +36,35 @@ function App() {
               <Route
                 exact
                 path="/"
-                element={<WelcomePage />}
+                element={<WelcomePage  />}
+              />
+              <Route
+                exact
+                path="/work-in-progress"
+                element={<WorkInProgress  />}
               />
               <Route
                 exact
                 path="/signin"
-                element={<Login setAuth={setAuth} />}
+                element={<Login setAuth={setAuth} auth={auth} />}
+              />
+              <Route
+                exact
+                path="/signin/forgotPassword"
+                element={<Login setAuth={setAuth} updateInfo={true} />}
               />
               <Route
                 exact
                 path="/signup"
-                element={<SignUp setAuth={setAuth} />}
+                element={<SignUp setAuth={setAuth} auth={auth} />}
               />
-              <Route exact path="/profile" element={<Profile auth={auth} />} />
+              <Route
+                exact
+                path="/profile"
+                element={
+                  <Profile auth={auth} signOut={signOut} setAuth={setAuth} />
+                }
+              />
               <Route exact path="/things" element={<Things />} />
               <Route path="/things/:thingId" element={<Thing />} />
               <Route path="/things/createThing" element={<CreateThingForm />} />
@@ -57,7 +74,7 @@ function App() {
               />
               <Route
                 path="/confirm-email/:userId/:resetToken"
-                element={<ConfirmEmail />}
+                element={<ConfirmEmail auth={auth} />}
               />
             </Routes>
           </div>

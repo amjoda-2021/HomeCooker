@@ -1,5 +1,4 @@
 const deleteOneThing = async ({ authContext, thingId, url }) => {
-  console.log(authContext);
   const response = await fetch(`${url}/api/userProfile/${thingId}`, {
     method: "DELETE",
     headers: {
@@ -8,7 +7,6 @@ const deleteOneThing = async ({ authContext, thingId, url }) => {
     },
   });
   const res = await response.json();
-  console.log(res);
 };
 
 export default deleteOneThing;
