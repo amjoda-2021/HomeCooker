@@ -27,21 +27,19 @@ function App() {
     setAuth({ userId: null, token: null, email: null });
   };
   return (
-    <Config.Provider value={{ urlAPI: "https://home-cooker-back.herokuapp.com/" }}>
+    <Config.Provider
+      value={{ urlAPI: "https://home-cooker-back.herokuapp.com" }}
+    >
       <AuthContext.Provider value={{ auth: auth, setAuth: setAuth }}>
         <Router>
           <div className="app">
             <Navbar signOut={signOut} auth={auth} />
             <Routes>
-              <Route
-                exact
-                path="/"
-                element={<WelcomePage  />}
-              />
+              <Route exact path="/" element={<WelcomePage />} />
               <Route
                 exact
                 path="/work-in-progress"
-                element={<WorkInProgress  />}
+                element={<WorkInProgress />}
               />
               <Route
                 exact
